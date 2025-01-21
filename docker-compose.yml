@@ -1,0 +1,46 @@
+services: 
+  db: 
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: my_mood
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./backend/database.sql:/docker-entrypoint-initdb.d/database.sql
+    ports: 
+      - "5432:5432"
+
+  pgadmin:
+    image: elestio/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: root
+      DB_NAME: my_mood
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:4200"
+
+volumes:
+  db-data:

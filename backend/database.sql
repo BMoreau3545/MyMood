@@ -28,7 +28,7 @@ CREATE TABLE cohort_assignments (
 CREATE TABLE mood_history (
     history_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
-    mood_score INT NOT NULL,
+    mood_score INT NOT NULL CHECK (mood_score BETWEEN 1 and 100),
     recorded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -1,7 +1,7 @@
 import { pool } from '../config/database.js';
 
 // Création d'un cohort
-exports.createCohort = async (req, res) => {
+export const createCohort = async (req, res) => {
     const { name } = req.body;
     try {
         await pool.query('INSERT INTO cohorts (name) VALUES ($1)', [name]);
@@ -12,7 +12,7 @@ exports.createCohort = async (req, res) => {
 };
 
 // Récupération de tous les cohorts
-exports.getAllCohorts = async (req, res) => {
+export const getAllCohorts = async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM cohorts');
         res.status(200).json(result.rows);
@@ -22,7 +22,7 @@ exports.getAllCohorts = async (req, res) => {
 };
 
 // Récupération d'un cohort
-exports.getCohort = async (req, res) => {
+export const getCohort = async (req, res) => {
     const id = req.params.id;
     try {
         const result = await pool.query('SELECT * FROM cohorts WHERE id = $1', [id]);
@@ -33,7 +33,7 @@ exports.getCohort = async (req, res) => {
 };
 
 // Mise à jour d'un cohort
-exports.updateCohort = async (req, res) => {
+export const updateCohort = async (req, res) => {
     const id = req.params.id;
     const { name } = req.body;
     try {
@@ -45,7 +45,7 @@ exports.updateCohort = async (req, res) => {
 };
 
 // Suppression d'un cohort
-exports.deleteCohort = async (req,res) => {
+export const deleteCohort = async (req,res) => {
     const id = req.params.id;
     try {
         await pool.query('DELETE FROM cohorts WHERE id = $1', [id]);

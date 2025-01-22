@@ -5,7 +5,7 @@ CREATE TABLE users (
     last_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
-    role VARCHAR(50) CHECK (role IN ('student', 'supervisor', 'administrator')),
+    role VARCHAR(50) CHECK (role IN ('student', 'supervisor', 'admin')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -36,6 +36,7 @@ CREATE TABLE mood_history (
 CREATE TABLE alerts (
     alert_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
+    alert_message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     resolved BOOLEAN DEFAULT TRUE,
     resolved_at TIMESTAMP

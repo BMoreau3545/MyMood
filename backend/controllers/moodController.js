@@ -1,7 +1,7 @@
 import { pool } from '../config/database.js';
 
 // Création d'un mood
-exports.createMood = async (req, res) => {
+export const createMood = async (req, res) => {
     const { mood_score, user_id } = req.body;
     if (mood_score < 1 || mood_score > 100) {
         return res.status(400).json({ error: 'Mood score must be between 1 and 100' });
@@ -15,7 +15,7 @@ exports.createMood = async (req, res) => {
 };
 
 // Récupération de tous les moods pour un user
-exports.getAllMoodsForOneUser = async (req, res) => {
+export const getAllMoodsForOneUser = async (req, res) => {
     const id = req.params.id;
     try {
         const result = await pool.query('SELECT * FROM moods WHERE user_id = $1', [id]);
@@ -26,10 +26,10 @@ exports.getAllMoodsForOneUser = async (req, res) => {
 };
 
 // Récupération du dernier mood pour un user
-exports.getLastMoodForOneUser = async (req, res) => {
+export const getLastMoodForOneUser = async (req, res) => {
     const id = req.params.id;
     try {
-        const result = await pool.query('SELECT * FROM moods WHERE user_id = $1 ORDER BY id DESC LIMIT 1', [id]);
+        const result = await pool.query('SELECT * FROM moods WHERE user_id = $1 ORDER BY recorded_at DESC LIMIT 1', [id]);
         res.status(200).json(result.rows);
     } catch (error) {
         res.status(500).json({ error: error.message });

@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: my_mood
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - ./db-data/:/var/lib/postgresql/data
       - ./backend/database.sql:/docker-entrypoint-initdb.d/database.sql
     ports: 
       - "5432:5432"
@@ -20,6 +20,8 @@ services:
       - "8080:80"
     depends_on:
       - db
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
 
   backend:
     build: ./backend
@@ -42,6 +44,3 @@ services:
       - backend
     ports:
       - "4200:4200"
-
-volumes:
-  db-data:

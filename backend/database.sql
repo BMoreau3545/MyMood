@@ -18,10 +18,10 @@ CREATE TABLE cohorts (
 
 -- Création de la table Affectations de Cohortes
 CREATE TABLE cohort_assignments (
-    assignment_id SERIAL PRIMARY KEY,
     cohort_id INT REFERENCES cohorts(cohort_id),
     user_id INT REFERENCES users(user_id),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (cohort_id, user_id)
 );
 
 -- Création de la table Historique des Humeurs
@@ -37,15 +37,15 @@ CREATE TABLE alerts (
     alert_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    resolved BOOLEAN DEFAULT FALSE,
-    resolved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    resolved BOOLEAN DEFAULT TRUE,
+    resolved_at TIMESTAMP
 );
 
 -- Création de la table Blacklist
 CREATE TABLE blacklist (
-    blacklist_id SERIAL PRIMARY KEY,
     supervisor_id INT REFERENCES users(user_id),
     student_id INT REFERENCES users(user_id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CHECK (supervisor_id <> student_id)
+    CHECK (supervisor_id <> student_id),
+    PRIMARY KEY (supervisor_id, student_id)
 );

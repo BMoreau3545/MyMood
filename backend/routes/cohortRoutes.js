@@ -9,5 +9,5 @@ router.use(authenticate);
 router.post('/', createCohort);
 router.get('/', getAllCohorts);
 router.get('/:id', getCohort);
-router.put('/:id', updateCohort);
+router.patch('/:id', updateCohort);
 router.delete('/:id', deleteCohort);

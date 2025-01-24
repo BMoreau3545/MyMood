@@ -10,4 +10,4 @@ router.use(authenticate);
 router.post('/', createAlert);
 router.get('/', getAlertsUnresolved);
 router.get('/user/:id', getAlertByUserUnresolved);
-router.put('/:id', resolveAlert);
+router.patch('/:id', resolveAlert);

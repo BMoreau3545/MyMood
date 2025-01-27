@@ -203,7 +203,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6I
 Content-Type: application/json
 
 {
-  "mood_score": 80
+  "mood_score": 10
 }
 
 ### Récupérer tous les moods d'un utilisateur

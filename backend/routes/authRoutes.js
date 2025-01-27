@@ -1,10 +1,9 @@
 import express from 'express';
-import { authenticate } from '../middleware/authMiddleware';
-import { login, logout } from '../controllers/authController';
+import { login, logout } from '../controllers/authController.js';
 
 const router = express.Router();
 
-router.use(authenticate);
-
 router.post('/login', login);
 router.delete('/logout', logout);
+
+export default router;

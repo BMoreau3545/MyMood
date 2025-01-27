@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { pool } from '../config/database.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 // Fonction de connexion
 export const login = async (req, res) => {
@@ -16,7 +16,7 @@ export const login = async (req, res) => {
             return res.status(401).send('Invalid password');
         }
 
-        const token = jwt.sign({ id: user.user_id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.user_id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '10h' });
         res.status(200).json({ token });
     } catch (error) {
         res.status(500).json({ error: error.message });

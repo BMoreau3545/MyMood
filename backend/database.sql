@@ -38,7 +38,6 @@ CREATE TABLE alerts (
     user_id INT REFERENCES users(user_id),
     alert_message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    resolved BOOLEAN DEFAULT TRUE,
     resolved_at TIMESTAMP
 );
 

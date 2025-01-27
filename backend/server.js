@@ -21,7 +21,7 @@ app.use('/alert', alertRoutes);
 app.use('/auth', authRoutes);
 app.use('/blacklist', blacklistRoutes);
 app.use('/cohort_assign', cohortAssignRoutes);
-app.use('cohort', cohortRoutes);
+app.use('/cohort', cohortRoutes);
 app.use('/mood', moodRoutes);
 app.use('/user', userRoutes);
 

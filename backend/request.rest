@@ -1,0 +1,215 @@
+### Créer un administrateur
+POST http://localhost:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NzIzMzA2LCJleHAiOjE3Mzc3MjY5MDZ9.0LuPekIaZZXB0w9y0VEKIWxclJ5wYCsgM3uqIGHARhw
+Content-Type: application/json
+
+{
+  "first_name": "Admin",
+  "last_name": "User",
+  "email": "admin@example.com",
+  "password": "adminpassword",
+  "role": "admin"
+}
+
+### Créer un superviseur
+POST http://localhost:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc3MjM1MTIsImV4cCI6MTczNzcyNzExMn0.suVa7aeBxgoqyXu8j9B_ZRzDNvpfH4qRBjD9MoFnz-o
+Content-Type: application/json
+
+{
+  "first_name": "Supervisor",
+  "last_name": "User",
+  "email": "supervisor@example.com",
+  "password": "supervisorpassword",
+  "role": "supervisor"
+}
+
+### Créer un étudiant
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "first_name": "Student",
+  "last_name": "User",
+  "email": "student@example.com",
+  "password": "studentpassword",
+  "role": "student"
+}
+
+### Créer un étudiant
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "first_name": "Student2",
+  "last_name": "User",
+  "email": "student2@example.com",
+  "password": "studentpassword",
+  "role": "student"
+}
+
+### Créer un étudiant
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "first_name": "Student3",
+  "last_name": "User",
+  "email": "student3@example.com",
+  "password": "studentpassword",
+  "role": "student"
+}
+
+### Récupérer tous les utilisateurs
+GET http://localhost:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Récupérer un utilisateur par ID
+GET http://localhost:3000/user/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NzE1ODkzLCJleHAiOjE3Mzc3MTk0OTN9.xcvKx-ufjog6jsCUp36erGm_CEPIjt8kjFpjR2SAveI
+
+### Mettre à jour un utilisateur
+PATCH http://localhost:3000/user/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NzE1ODkzLCJleHAiOjE3Mzc3MTk0OTN9.xcvKx-ufjog6jsCUp36erGm_CEPIjt8kjFpjR2SAveI
+Content-Type: application/json
+
+{
+  "last_name": "User",
+  "email": "updated@example.com",
+  "password": "updatedpassword",
+  "role": "student"
+}
+
+### Supprimer un utilisateur
+DELETE http://localhost:3000/user/1
+
+### Connexion
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "supervisor@example.com",
+  "password": "supervisorpassword"
+}
+
+### Déconnexion
+DELETE http://localhost:3000/auth/logout
+Headers: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NzIzMzA2LCJleHAiOjE3Mzc3MjY5MDZ9.0LuPekIaZZXB0w9y0VEKIWxclJ5wYCsgM3uqIGHARhw
+
+### Créer une alerte
+POST http://localhost:3000/alert/user/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc3MjM1MTIsImV4cCI6MTczNzcyNzExMn0.suVa7aeBxgoqyXu8j9B_ZRzDNvpfH4qRBjD9MoFnz-o
+Content-Type: application/json
+
+{
+  "message": "Alert message 1"
+}
+
+### Récupérer toutes les alertes
+GET http://localhost:3000/alert/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc3MjM1MTIsImV4cCI6MTczNzcyNzExMn0.suVa7aeBxgoqyXu8j9B_ZRzDNvpfH4qRBjD9MoFnz-o
+### Récupérer une alerte par ID
+GET http://localhost:3000/alert/all/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc3MjM1MTIsImV4cCI6MTczNzcyNzExMn0.suVa7aeBxgoqyXu8j9B_ZRzDNvpfH4qRBjD9MoFnz-o
+
+### Mettre à jour une alerte
+PATCH http://localhost:3000/alert/user/1/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc3Mjg2MTEsImV4cCI6MTczNzc2NDYxMX0.l7T-Y_3oIMPy1d5XZo4w-rkpjFnnM1eCVi2Zrdd6uUI
+### Supprimer une alerte
+DELETE http://localhost:3000/alert/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc3Mjg2MTEsImV4cCI6MTczNzc2NDYxMX0.l7T-Y_3oIMPy1d5XZo4w-rkpjFnnM1eCVi2Zrdd6uUI
+
+### Créer une blacklist
+POST http://localhost:3000/blacklist
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc3Mjg2MTEsImV4cCI6MTczNzc2NDYxMX0.l7T-Y_3oIMPy1d5XZo4w-rkpjFnnM1eCVi2Zrdd6uUI
+Content-Type: application/json
+
+{
+  "supervisor_id": 2,
+  "student_id": 4
+}
+
+### Récupérer toutes les blacklists d'un superviseur
+GET http://localhost:3000/blacklist/supervisor/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Récupérer toutes les blacklists d'un étudiant
+GET http://localhost:3000/blacklist/student/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Supprimer une blacklist
+DELETE http://localhost:3000/blacklist/1/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Créer une cohorte
+POST http://localhost:3000/cohort
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+Content-Type: application/json
+
+{
+  "name": "Cohort ",
+}
+
+### Récupérer toutes les cohortes
+GET http://localhost:3000/cohort
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Récupérer une cohorte par ID
+GET http://localhost:3000/cohort/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Mettre à jour une cohorte
+PATCH http://localhost:3000/cohort/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+Content-Type: application/json
+
+{
+  "name": "Cohort 1b",
+}
+
+### Supprimer une cohorte
+DELETE http://localhost:3000/cohort/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Affectation d'un utilisateur à une cohorte
+POST http://localhost:3000/cohort_assign/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+Content-Type: application/json
+
+{
+  "user_id": 5
+}
+
+### Récupérer tous les utilisateurs d'une cohorte
+GET http://localhost:3000/cohort_assign/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Récupérer toutes les cohortes d'un utilisateur
+GET http://localhost:3000/cohort_assign/user/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Supprimer un utilisateur d'une cohorte
+DELETE http://localhost:3000/cohort_assign/user/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+Content-Type: application/json
+
+{
+  "user_id": 5
+}
+
+### Créer un mood
+POST http://localhost:3000/mood/user/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+Content-Type: application/json
+
+{
+  "mood_score": 80
+}
+
+### Récupérer tous les moods d'un utilisateur
+GET http://localhost:3000/mood/user/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
+
+### Récupérer le dernier mood d'un utilisateur
+GET http://localhost:3000/mood/user/4/last
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts

@@ -23,9 +23,9 @@ export const getAllCohorts = async (req, res) => {
 
 // Récupération d'une cohort
 export const getCohort = async (req, res) => {
-    const id = req.params.id;
+    const { cohort_id } = req.params;
     try {
-        const result = await pool.query('SELECT * FROM cohorts WHERE cohort_id = $1', [id]);
+        const result = await pool.query('SELECT * FROM cohorts WHERE cohort_id = $1', [cohort_id]);
         res.status(200).json(result.rows);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -34,10 +34,10 @@ export const getCohort = async (req, res) => {
 
 // Mise à jour d'un cohort
 export const updateCohort = async (req, res) => {
-    const id = req.params.id;
+    const { cohort_id } = req.params;
     const { name } = req.body;
     try {
-        await pool.query('UPDATE cohorts SET name = $1 WHERE cohort_id = $2', [name, id]);
+        await pool.query('UPDATE cohorts SET name = $1 WHERE cohort_id = $2', [name, cohort_id]);
         res.status(200).json({ message: 'Cohort updated successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -46,9 +46,9 @@ export const updateCohort = async (req, res) => {
 
 // Suppression d'un cohort
 export const deleteCohort = async (req,res) => {
-    const id = req.params.id;
+    const { cohort_id } = req.params;
     try {
-        await pool.query('DELETE FROM cohorts WHERE cohort_id = $1', [id]);
+        await pool.query('DELETE FROM cohorts WHERE cohort_id = $1', [cohort_id]);
         res.status(200).json({ message: 'Cohort deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });

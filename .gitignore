@@ -3,6 +3,7 @@ backend/node_modules/
 assets/
 pgadmin/
 db-data/
+.rest
 
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 

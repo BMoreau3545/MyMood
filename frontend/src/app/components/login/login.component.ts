@@ -22,7 +22,6 @@ export class LoginComponent {
       password: this.password
     }).subscribe((response: any) => {
       if (response.success) {
-        localStorage.setItem('token', response.token);
         this.authService.setRole(response.role);
         if (response.role === 'student') {
           this.router.navigate(['/student']);

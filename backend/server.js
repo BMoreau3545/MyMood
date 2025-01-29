@@ -8,14 +8,16 @@ import cohortAssignRoutes from './routes/cohortAssignRoutes.js';
 import cohortRoutes from './routes/cohortRoutes.js';
 import moodRoutes from './routes/moodRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import cors from 'cors';
 
 dotenv.config();
-
+ 
 const app = express();
 const port = 3000;
 
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.json());
+app.use(cors());
 
 app.use('/alert', alertRoutes);
 app.use('/auth', authRoutes);

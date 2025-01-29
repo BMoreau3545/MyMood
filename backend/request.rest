@@ -1,6 +1,5 @@
 ### Créer un administrateur
 POST http://localhost:3000/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM3NzIzMzA2LCJleHAiOjE3Mzc3MjY5MDZ9.0LuPekIaZZXB0w9y0VEKIWxclJ5wYCsgM3uqIGHARhw
 Content-Type: application/json
 
 {
@@ -62,7 +61,6 @@ Content-Type: application/json
 
 ### Récupérer tous les utilisateurs
 GET http://localhost:3000/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InN1cGVydmlzb3IiLCJpYXQiOjE3Mzc5NjUxNzQsImV4cCI6MTczODAwMTE3NH0.HIlvTuVP6FwFayIuAlu-yGy4veR5IpVEomL5-SBLzts
 
 ### Récupérer un utilisateur par ID
 GET http://localhost:3000/user/5

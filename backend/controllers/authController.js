@@ -3,28 +3,36 @@ import { pool } from '../config/database.js';
 import bcrypt from 'bcryptjs';
 
 // Fonction de connexion
-export const login = async (req, res) => {
+export async function login(req, res) {
     const { email, password } = req.body;
     try {
         const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
         if (result.rows.length === 0) {
-            return res.status(404).send('User not found');
+            return res.sendStatus(401);
         }
         const user = result.rows[0];
         const validPassword = await bcrypt.compare(password, user.password);
         if (!validPassword) {
-            return res.status(401).send('Invalid password');
+            return res.sendStatus(401);
         }
 
         const token = jwt.sign({ id: user.user_id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '24h' });
-        res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
-        res.status(200).json({ token });
+        res.cookie('auth', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 1000 * 60 * 60 * 24,
+            priority: 'high',
+            signed: true,
+        });
+        res.status(200).json({ id: user.user_id, role: user.role });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error(error);
+        res.sendStatus(500);
     }
 };
 
-export const logout = (req, res) => {
-    res.clearCookie('token');
-    res.status(200).json({ message: 'Logout successful' });
+export async function logout(req, res) {
+    res.clearCookie('auth');
+    res.sendStatus(200);
 }

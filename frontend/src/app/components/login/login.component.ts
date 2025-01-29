@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,27 +14,22 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  error?: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 
-  onSubmit() {
-    this.http.post('http://localhost:3000/auth/login', {
-      email: this.email,
-      password: this.password
-    }).subscribe((response: any) => {
-      if (response.success) {
-        this.authService.setRole(response.role);
-        if (response.role === 'student') {
-          this.router.navigate(['/student']);
-        } else if (response.role === 'supervisor') {
-          this.router.navigate(['/supervisor']);
-        } else if (response.role === 'admin') {
-          this.router.navigate(['/admin']);
-        }
-      } else {
-        alert('Invalid email or password');
-      }
-    });
+  async onSubmit() {
+    const result = await this.authService.login(this.email, this.password);
+    if (result === 'student') {
+      this.router.navigate(['/student']);
+    } else if (result === 'supervisor') {
+      this.router.navigate(['/supervisor']);
+    } else if (result === 'admin') {
+      this.router.navigate(['/admin']);
+    } else if (result === 'wrong_credentials') {
+      this.error = 'Wrong credentials!';
+    } else if (result === 'internal_error') {
+      this.error = 'Internal server error!';
+    }
   }
-
 }
